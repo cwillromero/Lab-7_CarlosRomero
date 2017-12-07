@@ -6,9 +6,17 @@
 package lab.pkg7_carlosromero;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -178,6 +186,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
         jButton6.setText("Guardar Archivo");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
         jButton7.setText("Cargar Archivo");
 
@@ -278,10 +291,11 @@ public class Principal extends javax.swing.JFrame {
         Thread proceso=new Thread(cajero);
         proceso.start();
         JOptionPane.showMessageDialog(this, "Proceso Iniciado.", "Comprar", 1);
-        if(!Todo.contains(cajero)){
-            Todo.add(cajero);
-        }
     }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        Guardar("ArchivoDeSupermercado", "WILL", "Archivo de Supermercado");
+    }//GEN-LAST:event_jButton6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -318,6 +332,28 @@ public class Principal extends javax.swing.JFrame {
         });
     }
 
+    public void Guardar(String Nombre, String Extension, String Tipo) {
+        JFileChooser jfc = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter(Tipo, Extension);
+        jfc.addChoosableFileFilter(filtro);
+        jfc.setSelectedFile(new File(Nombre + "." + Extension));
+        int seleccion = jfc.showSaveDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            Administracion ad = new Administracion(jfc.getSelectedFile().getPath());
+            ad.CargarArchivo();
+            System.out.println("Guardar:");
+            for (int i = 0; i < Todo.size(); i++) {
+                ad.AgregarElemento(Todo.get(i));
+                System.out.println(Todo.get(i));
+            }
+            try {
+                ad.EscribirArchivo();
+            } catch (IOException ex) {
+                Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Guardado", "Guardado", 1);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CajeroCombobox;
     private javax.swing.JSpinner EdadCliente;

@@ -5,14 +5,17 @@
  */
 package lab.pkg7_carlosromero;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Will
  */
-public class Productos {
+public class Productos implements Serializable{
     private String nombre; 
     private double precio;
     private int tiempo;
+    private static final long SerialVersionUID=2010L;
 
     public Productos() {
     }
