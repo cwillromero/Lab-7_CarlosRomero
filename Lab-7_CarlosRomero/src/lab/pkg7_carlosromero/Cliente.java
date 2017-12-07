@@ -9,13 +9,8 @@ package lab.pkg7_carlosromero;
  *
  * @author Will
  */
-public class Lab7_CarlosRomero {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+public class Cliente {
+     private String nombre; 
+     private int edad;
+     private Orden orden; 
 }
