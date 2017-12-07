@@ -35,7 +35,6 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jdCajero = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -59,22 +58,11 @@ public class Principal extends javax.swing.JFrame {
         NombreCliente = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         EdadCliente = new javax.swing.JSpinner();
-        jButton4 = new javax.swing.JButton();
+        bCrearClientes = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-
-        javax.swing.GroupLayout jdCajeroLayout = new javax.swing.GroupLayout(jdCajero.getContentPane());
-        jdCajero.getContentPane().setLayout(jdCajeroLayout);
-        jdCajeroLayout.setHorizontalGroup(
-            jdCajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jdCajeroLayout.setVerticalGroup(
-            jdCajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -169,13 +157,13 @@ public class Principal extends javax.swing.JFrame {
         EdadCliente.setModel(new javax.swing.SpinnerNumberModel());
         jPanel3.add(EdadCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 70, -1));
 
-        jButton4.setText("Crear Cliente");
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        bCrearClientes.setText("Crear Cliente");
+        bCrearClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                bCrearClientesMouseClicked(evt);
             }
         });
-        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+        jPanel3.add(bCrearClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
         jButton5.setText("Realizar Compra");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,11 +208,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -241,6 +229,9 @@ public class Principal extends javax.swing.JFrame {
         model.addElement(Cajero.toString());
         CajeroCombobox.setModel(model);
         JOptionPane.showMessageDialog(this, "Creado", "Creado", 1);
+        Ventana ventana=Cajero.getVentana();
+        ventana.CajeroNombre.setText(Nombre);
+        ventana.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -255,7 +246,7 @@ public class Principal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Creado", "Creado", 1);
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    private void bCrearClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearClientesMouseClicked
         productoscliente=new ArrayList();
         Orden=new Orden();
         String nombre=NombreCliente.getText();
@@ -263,7 +254,7 @@ public class Principal extends javax.swing.JFrame {
         Cliente cliente=new Cliente(nombre, edad, null);
         clientes.add(cliente);
         System.out.println(cliente.toString());
-    }//GEN-LAST:event_jButton4MouseClicked
+    }//GEN-LAST:event_bCrearClientesMouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         int x=ProductosCombobox.getSelectedIndex();
@@ -279,6 +270,9 @@ public class Principal extends javax.swing.JFrame {
         clientes.get(clientes.size()-1).setOrden(Orden);
         cajero.getOrdenes().add(Orden);
         System.out.println(Orden.toString());
+        cajero.EnviarOrden(Orden);
+        Thread proceso=new Thread(cajero);
+        proceso.start();
     }//GEN-LAST:event_jButton5MouseClicked
 
     /**
@@ -325,10 +319,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner PrecioProducto;
     private javax.swing.JComboBox<String> ProductosCombobox;
     private javax.swing.JSpinner TiempoProducto;
+    private javax.swing.JButton bCrearClientes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -345,11 +339,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JDialog jdCajero;
     // End of variables declaration//GEN-END:variables
     ArrayList<Cliente> clientes=new ArrayList();
     ArrayList<Cajeros> cajeros=new ArrayList();
     ArrayList<Productos> productos=new ArrayList();
     Orden Orden=new Orden();
     ArrayList<Productos> productoscliente=new ArrayList();
+    Ventana VentanaActual;
 }
