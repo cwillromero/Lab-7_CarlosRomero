@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class Cajeros implements Serializable, Runnable {
 
     private Orden orden;
+    private boolean Run=true;
     private String Nombre;
     private Ventana Ventana = new Ventana();
     private int ID;
@@ -76,8 +77,7 @@ public class Cajeros implements Serializable, Runnable {
     public void run() {
         Ventana.CajeroNombre.setText(Nombre);
         Ventana.ClienteNombre.setText(orden.getCliente().getNombre());
-        while (true) {
-
+        while (Run==true) {
             for (int i = 0; i < orden.getProductos().size(); i++) {
                 int tiempo = (orden.getProductos().get(i).getTiempo()) * 1000;
                 try {
@@ -98,6 +98,7 @@ public class Cajeros implements Serializable, Runnable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Cajeros.class.getName()).log(Level.SEVERE, null, ex);
             }
+            Run=false;
         }
 
     }

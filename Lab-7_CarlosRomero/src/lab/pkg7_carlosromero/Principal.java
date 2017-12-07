@@ -228,7 +228,7 @@ public class Principal extends javax.swing.JFrame {
         DefaultComboBoxModel model=(DefaultComboBoxModel) CajeroCombobox.getModel();
         model.addElement(Cajero.toString());
         CajeroCombobox.setModel(model);
-        JOptionPane.showMessageDialog(this, "Creado", "Creado", 1);
+        JOptionPane.showMessageDialog(this, "Cajero Creado", "Creado", 1);
         Ventana ventana=Cajero.getVentana();
         ventana.CajeroNombre.setText(Nombre);
         ventana.setVisible(true);
@@ -243,7 +243,7 @@ public class Principal extends javax.swing.JFrame {
         DefaultComboBoxModel model=(DefaultComboBoxModel) ProductosCombobox.getModel();
         model.addElement(pro.toString());
         ProductosCombobox.setModel(model);    
-        JOptionPane.showMessageDialog(this, "Creado", "Creado", 1);
+        JOptionPane.showMessageDialog(this, "Producto Creado", "Creado", 1);
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void bCrearClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearClientesMouseClicked
@@ -254,6 +254,7 @@ public class Principal extends javax.swing.JFrame {
         Cliente cliente=new Cliente(nombre, edad, null);
         clientes.add(cliente);
         System.out.println(cliente.toString());
+        JOptionPane.showMessageDialog(this, "Cliente Creado", "Creado", 1);
     }//GEN-LAST:event_bCrearClientesMouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
@@ -261,6 +262,7 @@ public class Principal extends javax.swing.JFrame {
         Productos pro=productos.get(x);
         productoscliente.add(pro);
         System.out.println(productoscliente);
+        JOptionPane.showMessageDialog(this, "Producto Agregado", "Creado", 1);
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
@@ -273,6 +275,7 @@ public class Principal extends javax.swing.JFrame {
         cajero.EnviarOrden(Orden);
         Thread proceso=new Thread(cajero);
         proceso.start();
+        JOptionPane.showMessageDialog(this, "Proceso Iniciado.", "Comprar", 1);
     }//GEN-LAST:event_jButton5MouseClicked
 
     /**
