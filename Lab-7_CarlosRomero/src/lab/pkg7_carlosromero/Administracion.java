@@ -21,23 +21,28 @@ import javax.swing.JTree;
  *
  * @author Will
  */
-public class Administracion implements Serializable{
-    private ArrayList todo=new ArrayList();
+public class Administracion implements Serializable {
+
+    private ArrayList todo = new ArrayList();
     private File archivo;
-    private static final long SerialVersionUID=2010L;
+    private static final long SerialVersionUID = 2010L;
 
     public Administracion(String Path) {
-        archivo=new File(Path);
+        archivo = new File(Path);
     }
 
     public void setTodo(ArrayList todo) {
         this.todo = todo;
     }
-    
-    public void AgregarElemento(Object X){
+
+    public void AgregarElemento(Object X) {
         todo.add(X);
     }
-    
+
+    public ArrayList getTodo() {
+        return todo;
+    }
+
     public void EscribirArchivo() throws IOException {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
@@ -55,7 +60,7 @@ public class Administracion implements Serializable{
         bw.close();
         fw.close();
     }
-    
+
     public void CargarArchivo() {
         try {
             todo = new ArrayList();
@@ -64,7 +69,7 @@ public class Administracion implements Serializable{
                 FileInputStream entrada = new FileInputStream(archivo);
                 ObjectInputStream objeto = new ObjectInputStream(entrada);
                 try {
-                    while (((esto = objeto.readObject()) != null) || ((esto = ((Component)objeto.readObject())) != null)) {
+                    while (((esto = objeto.readObject()) != null) || ((esto = ((Component) objeto.readObject())) != null)) {
                         todo.add(esto);
                     }
                 } catch (Exception e) {

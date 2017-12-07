@@ -6,11 +6,14 @@
 package lab.pkg7_carlosromero;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -193,6 +196,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jButton7.setText("Cargar Archivo");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -297,6 +305,10 @@ public class Principal extends javax.swing.JFrame {
         Guardar("ArchivoDeSupermercado", "WILL", "Archivo de Supermercado");
     }//GEN-LAST:event_jButton6MouseClicked
 
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        Abrir();
+    }//GEN-LAST:event_jButton7MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -352,6 +364,28 @@ public class Principal extends javax.swing.JFrame {
                 Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
             JOptionPane.showMessageDialog(this, "Guardado", "Guardado", 1);
+        }
+    }
+    
+    public void Abrir() {
+        try {
+            JFileChooser jfc = new JFileChooser();
+            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Supermercado", "WILL");
+            jfc.addChoosableFileFilter(filtro);
+            int seleccion = jfc.showOpenDialog(this);
+            String Path = jfc.getSelectedFile().getPath();
+            productos = new ArrayList();
+            Administracion ap = new Administracion(Path);
+            ap.CargarArchivo();
+            System.out.println("Componentes Abiertos");
+            DefaultComboBoxModel modelo= (DefaultComboBoxModel)ProductosCombobox.getModel();
+            for (int i = 0; i < ap.getTodo().size(); i++) {
+                Object objeto = ap.getTodo().get(i);
+                modelo.addElement(objeto);
+            }
+            ProductosCombobox.setModel(modelo);
+            JOptionPane.showMessageDialog(this, "Archivo cargado correctamente.", "Cargar", 1);
+        } catch (Exception e) {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
