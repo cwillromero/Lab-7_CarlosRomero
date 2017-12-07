@@ -46,6 +46,11 @@ public class Productos {
     public void setTiempo(int tiempo) {
         this.tiempo = tiempo;
     }
+
+    @Override
+    public String toString() {
+        return nombre ;
+    }
     
     
 }

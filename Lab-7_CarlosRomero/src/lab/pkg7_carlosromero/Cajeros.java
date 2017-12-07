@@ -15,14 +15,14 @@ import java.util.ArrayList;
 public class Cajeros implements Serializable{
     
     private String Nombre;
-    private String ID;
+    private int ID;
     private ArrayList<Orden> ordenes=new ArrayList();
     private static final long SerialVersionUID=2010L;
     
     public Cajeros() {
     }
 
-    public Cajeros(String Nombre, String ID) {
+    public Cajeros(String Nombre, int ID) {
         this.Nombre = Nombre;
         this.ID = ID;
     }
@@ -35,22 +35,26 @@ public class Cajeros implements Serializable{
         this.Nombre = Nombre;
     }
 
-    public String getID() {
+    public int getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 
-    public ArrayList getOrdenes() {
+    public ArrayList<Orden> getOrdenes() {
         return ordenes;
     }
 
-    public void setOrdenes(ArrayList ordenes) {
+    public void setOrdenes(ArrayList<Orden> ordenes) {
         this.ordenes = ordenes;
     }
-    
+
+    @Override
+    public String toString() {
+        return Nombre + ordenes;
+    }
     
     
 }

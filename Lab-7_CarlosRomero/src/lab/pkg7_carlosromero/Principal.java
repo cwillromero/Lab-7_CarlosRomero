@@ -6,6 +6,9 @@
 package lab.pkg7_carlosromero;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,34 +35,46 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jdCajero = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        NombreCajero = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        NombreProducto = new javax.swing.JTextField();
+        TiempoProducto = new javax.swing.JSpinner();
+        PrecioProducto = new javax.swing.JSpinner();
         jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        CajeroCombobox = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        ProductosCombobox = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        NombreCliente = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jSpinner3 = new javax.swing.JSpinner();
+        EdadCliente = new javax.swing.JSpinner();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jdCajeroLayout = new javax.swing.GroupLayout(jdCajero.getContentPane());
+        jdCajero.getContentPane().setLayout(jdCajeroLayout);
+        jdCajeroLayout.setHorizontalGroup(
+            jdCajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jdCajeroLayout.setVerticalGroup(
+            jdCajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,9 +90,14 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 140, 30));
+        jPanel1.add(NombreCajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 140, 30));
 
         jButton1.setText("Agregar Cajero");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, -1, -1));
 
         jTabbedPane1.addTab("Creacion de Cajero", jPanel1);
@@ -96,15 +116,20 @@ public class Principal extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Tiempo de Procesamiento (Segundos):");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, -1));
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 210, 30));
+        jPanel2.add(NombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 210, 30));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel());
-        jPanel2.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 70, -1));
+        TiempoProducto.setModel(new javax.swing.SpinnerNumberModel());
+        jPanel2.add(TiempoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 70, -1));
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(0.99d, null, null, 0.5d));
-        jPanel2.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(319, 190, 70, -1));
+        PrecioProducto.setModel(new javax.swing.SpinnerNumberModel(0.99d, null, null, 0.5d));
+        jPanel2.add(PrecioProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(319, 190, 70, -1));
 
         jButton2.setText("Agregar Producto");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
 
         jTabbedPane1.addTab("Creacion de Productos", jPanel2);
@@ -112,7 +137,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 290, -1));
+        jPanel3.add(CajeroCombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 290, -1));
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Cajero:");
@@ -122,27 +147,42 @@ public class Principal extends javax.swing.JFrame {
         jLabel6.setText("Nombre Cliente:");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
-        jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 290, -1));
+        jPanel3.add(ProductosCombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 290, -1));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Productos:");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
 
         jButton3.setText("Agregar a Orden");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 200, 30));
+        jPanel3.add(NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 200, 30));
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Edad de Cliente:");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel());
-        jPanel3.add(jSpinner3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 70, -1));
+        EdadCliente.setModel(new javax.swing.SpinnerNumberModel());
+        jPanel3.add(EdadCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 70, -1));
 
         jButton4.setText("Crear Cliente");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
         jButton5.setText("Realizar Compra");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
         jPanel3.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 170, 40));
 
         jTabbedPane1.addTab("Ventas", jPanel3);
@@ -190,6 +230,57 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        String Nombre=NombreCajero.getText();
+        int ID=(int) Math.floor(Math.random() * 12345 + 1);
+        Cajeros Cajero=new Cajeros(Nombre, ID);
+        ArrayList<Orden> Ordenes=new ArrayList();
+        Cajero.setOrdenes(Ordenes);
+        cajeros.add(Cajero);
+        DefaultComboBoxModel model=(DefaultComboBoxModel) CajeroCombobox.getModel();
+        model.addElement(Cajero.toString());
+        CajeroCombobox.setModel(model);
+        JOptionPane.showMessageDialog(this, "Creado", "Creado", 1);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        String nombre=NombreProducto.getText();
+        double precio=(double)PrecioProducto.getValue();
+        int tiempo=(Integer)TiempoProducto.getValue();
+        Productos pro=new Productos(nombre, precio, tiempo);
+        productos.add(pro);
+        DefaultComboBoxModel model=(DefaultComboBoxModel) ProductosCombobox.getModel();
+        model.addElement(pro.toString());
+        ProductosCombobox.setModel(model);    
+        JOptionPane.showMessageDialog(this, "Creado", "Creado", 1);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        productoscliente=new ArrayList();
+        Orden=new Orden();
+        String nombre=NombreCliente.getText();
+        int edad=(Integer)EdadCliente.getValue();
+        Cliente cliente=new Cliente(nombre, edad, null);
+        clientes.add(cliente);
+        System.out.println(cliente.toString());
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        int x=ProductosCombobox.getSelectedIndex();
+        Productos pro=productos.get(x);
+        productoscliente.add(pro);
+        System.out.println(productoscliente);
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        int x=CajeroCombobox.getSelectedIndex();
+        Cajeros cajero=cajeros.get(x);
+        Orden=new Orden(cajero, clientes.get(clientes.size()-1), productoscliente);
+        clientes.get(clientes.size()-1).setOrden(Orden);
+        cajero.getOrdenes().add(Orden);
+        System.out.println(Orden.toString());
+    }//GEN-LAST:event_jButton5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -226,6 +317,14 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CajeroCombobox;
+    private javax.swing.JSpinner EdadCliente;
+    private javax.swing.JTextField NombreCajero;
+    private javax.swing.JTextField NombreCliente;
+    private javax.swing.JTextField NombreProducto;
+    private javax.swing.JSpinner PrecioProducto;
+    private javax.swing.JComboBox<String> ProductosCombobox;
+    private javax.swing.JSpinner TiempoProducto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -233,8 +332,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -247,12 +344,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JDialog jdCajero;
     // End of variables declaration//GEN-END:variables
+    ArrayList<Cliente> clientes=new ArrayList();
+    ArrayList<Cajeros> cajeros=new ArrayList();
+    ArrayList<Productos> productos=new ArrayList();
+    Orden Orden=new Orden();
+    ArrayList<Productos> productoscliente=new ArrayList();
 }

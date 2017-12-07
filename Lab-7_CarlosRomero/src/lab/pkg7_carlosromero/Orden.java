@@ -48,6 +48,11 @@ public class Orden {
     public void setProductos(ArrayList<Productos> productos) {
         this.productos = productos;
     }
+
+    
+    public String toString() {
+        return "Orden{" + "cajero=" + cajero.getNombre() + ", cliente=" + cliente.getNombre() + ", productos=" + productos + '}';
+    }
     
     
 }
