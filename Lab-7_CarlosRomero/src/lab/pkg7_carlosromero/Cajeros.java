@@ -59,10 +59,14 @@ public class Cajeros implements Serializable, Runnable {
     public void setOrdenes(ArrayList<Orden> ordenes) {
         this.ordenes = ordenes;
     }
+    
+    public void Seguir(){
+        this.Run=true;
+    } 
 
     @Override
     public String toString() {
-        return Nombre + ordenes;
+        return Nombre;
     }
 
     public Ventana getVentana() {

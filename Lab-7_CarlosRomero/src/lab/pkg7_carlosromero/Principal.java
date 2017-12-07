@@ -271,6 +271,7 @@ public class Principal extends javax.swing.JFrame {
         Orden=new Orden(cajero, clientes.get(clientes.size()-1), productoscliente);
         clientes.get(clientes.size()-1).setOrden(Orden);
         cajero.getOrdenes().add(Orden);
+        cajero.Seguir();
         System.out.println(Orden.toString());
         cajero.EnviarOrden(Orden);
         Thread proceso=new Thread(cajero);
