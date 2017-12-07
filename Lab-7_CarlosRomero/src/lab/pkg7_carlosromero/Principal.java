@@ -244,6 +244,7 @@ public class Principal extends javax.swing.JFrame {
         model.addElement(pro.toString());
         ProductosCombobox.setModel(model);    
         JOptionPane.showMessageDialog(this, "Producto Creado", "Creado", 1);
+        Todo.add(pro);
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void bCrearClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearClientesMouseClicked
@@ -277,6 +278,9 @@ public class Principal extends javax.swing.JFrame {
         Thread proceso=new Thread(cajero);
         proceso.start();
         JOptionPane.showMessageDialog(this, "Proceso Iniciado.", "Comprar", 1);
+        if(!Todo.contains(cajero)){
+            Todo.add(cajero);
+        }
     }//GEN-LAST:event_jButton5MouseClicked
 
     /**
@@ -350,4 +354,5 @@ public class Principal extends javax.swing.JFrame {
     Orden Orden=new Orden();
     ArrayList<Productos> productoscliente=new ArrayList();
     Ventana VentanaActual;
+    ArrayList Todo=new ArrayList();
 }
